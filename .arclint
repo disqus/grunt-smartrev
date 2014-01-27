@@ -1,0 +1,20 @@
+{
+  "linters" : {
+    "jshint" : {
+      "type" : "script-and-regex",
+      "include" : "(\\.js$)"
+    },
+    "text" : {
+      "type" : "text",
+      "include" : "(\\.txt$)"
+    },
+    "filename" : {
+      "type" : "filename",
+      "include" : "(.*)"
+    },
+    "spelling" : {
+      "type" : "spelling",
+      "include" : "(.*)"
+    }
+  }
+}

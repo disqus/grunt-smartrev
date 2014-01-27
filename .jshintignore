@@ -1,0 +1,4 @@
+tmp/**
+node_modules/**
+test/expected/**
+test/fixtures/**

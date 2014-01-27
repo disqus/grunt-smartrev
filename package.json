@@ -1,0 +1,42 @@
+{
+    "name": "grunt-smart-rev",
+    "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
+    "version": "0.1.0",
+    "homepage": "",
+    "author": {
+        "name": "Disqus",
+        "email": "open-source@disqus.com",
+        "url": "http://disqus.com"
+    },
+    "repository": {
+        "type": "git",
+        "url": "ssh://git@phabricator.local.disqus.net:69/diffusion/GRUNTSMARTREV/"
+    },
+    "bugs": {
+        "url": ""
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "/blob/master/LICENSE-MIT"
+        }
+    ],
+    "engines": {
+        "node": ">= 0.8.0"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "devDependencies": {
+        "grunt-contrib-jshint": "~0.6.0",
+        "grunt-contrib-clean": "~0.4.0",
+        "grunt-contrib-nodeunit": "~0.2.0",
+        "grunt": "~0.4.2"
+    },
+    "peerDependencies": {
+        "grunt": "~0.4.2"
+    },
+    "keywords": [
+        "gruntplugin"
+    ]
+}
