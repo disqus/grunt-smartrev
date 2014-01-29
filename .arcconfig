@@ -1,6 +1,6 @@
 {
   "base": "git:merge-base(origin/master), arc:upstream, git:HEAD^",
-  "project_id": "next",
+  "project_id": "grunt-smart-rev",
   "conduit_uri" : "http://phabricator.local.disqus.net/",
   "copyright_holder": "Disqus, Inc.",
   "history.immutable": false,
@@ -10,8 +10,5 @@
   "linter.scriptandregex.regex": "/^(?P<file>.+): line (?P<line>\\d+), col (?P<char>\\d+), (?P<message>.+) \\((?P<code>[WE]\\d+)\\)$/m",
   "unit.engine": "GenericXUnitTestEngine",
   "unit.genericxunit.script": "node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js -f test.xunit --xunit-file",
-  "unit.genericxunit.result_path": "tmp/test_results",
-  "events.listeners": ["JenkinsDiffEventListener"],
-  "jenkins.uri": "http:\/\/ci.local.disqus.net",
-  "jenkins.job": "services-phabricator"
+  "unit.genericxunit.result_path": "tmp/test_results"
 }
