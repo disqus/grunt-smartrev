@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -r "package.json" ] ; then
+    npm install
+fi
+
+TEST_CMD="node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js --no-color test.xunit --xunit-file=${RESULTS_PATH}/xunit/tests.xml"
+
+DISABLE_FLAKE8=true
+DISABLE_PEP8=true
