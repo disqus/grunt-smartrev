@@ -42,7 +42,7 @@ Tree.prototype.generate = function (files) {
     var file;
     for (var i = 0, len = files.length; i < len; i++) {
         file = files[i];
-        this.get(file).findDependencies(file);
+        this.get(file).findDependencies();
     }
 
     return this;
