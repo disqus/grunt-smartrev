@@ -58,15 +58,13 @@ Tree.prototype.get = function (name) {
 };
 
 Tree.prototype.process = function () {
-    var levels = _(this.nodes).groupBy(function (node) {
+    var levels = _.groupBy(this.nodes, function (node) {
         return node.height();
-    }).toArray().value();
+    });
 
-    // Not using the functional style (.forEach) below since we have 2 nested
-    // loops and creating a new function in a loop (the first one) would be bad
     var hashAlgo = this.hashAlgo;
     var level, node, name;
-    for (var height = 0, maxHeight = levels.length - 1; height <= maxHeight; height++) {
+    for (var height = 0, maxHeight = _.size(levels) - 1; height <= maxHeight; height++) {
         level = levels[height];
         for (var i = 0, len = level.length; i < len; i++) {
             node = level[i];
