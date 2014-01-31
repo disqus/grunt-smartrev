@@ -96,6 +96,21 @@ Tree.prototype.process = function () {
     return this;
 };
 
+Tree.prototype.stats = function () {
+    var tree = this;
+    return Object.keys(tree.nodes).reduce(function (stats, name) {
+        var dep = tree.nodes[name];
+        stats[name] = {
+            newName: dep.name,
+            height: dep.height(),
+            size: fs.statSync(dep.name).size,
+            dependencies: Object.keys(dep.dependencies)
+        };
+
+        return stats;
+    }, {});
+};
+
 Dependency = function (name, tree) {
     this.tree = tree;
     this.name = name;
@@ -178,11 +193,14 @@ module.exports = function (grunt) {
 
             // Iterate over all specified file groups.
             this.files.forEach(function (f) {
-                new Tree(
+                var tree = new Tree(
                     _.result(options, 'baseUrl'),
                     grunt.file.expand({}, options.noRename),
                     options.algorithm
                 ).generate(f.src.filter(filterFiles)).process();
+
+                if (f.dest)
+                    grunt.file.write(f.dest, JSON.stringify(tree.stats()));
             });
 
             process.chdir(owd);

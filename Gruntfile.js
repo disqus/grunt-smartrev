@@ -64,6 +64,7 @@ module.exports = function (grunt) {
         targets[item] = {
             options: options,
             src: ['**/*.*', '!**/options.json'],
+            dest: 'stats.json',
         };
 
         return targets;
