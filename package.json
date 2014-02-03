@@ -6,19 +6,19 @@
     "author": {
         "name": "Disqus",
         "email": "open-source@disqus.com",
-        "url": "http://disqus.com"
+        "url": "https://github.com/disqus/grunt-smart-rev"
     },
     "repository": {
         "type": "git",
-        "url": "ssh://git@phabricator.local.disqus.net:69/diffusion/GRUNTSMARTREV/"
+        "url": "git://github.com/disqus/grunt-smart-rev.git"
     },
     "bugs": {
-        "url": ""
+        "url": "https://github.com/disqus/grunt-smart-rev/issues"
     },
     "licenses": [
         {
-            "type": "MIT",
-            "url": "/blob/master/LICENSE-MIT"
+            "type": "Apache-2.0",
+            "url": "/blob/master/LICENSE"
         }
     ],
     "engines": {
@@ -46,6 +46,6 @@
         "grunt": "~0.4.2"
     },
     "keywords": [
-        "gruntplugin"
+        "gruntplugin", "asset", "assetgraph", "hash", "rev", "version"
     ]
 }

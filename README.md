@@ -2,6 +2,32 @@
 
 > A "smart" file versioner for production environments which takes inter-file dependencies into account automatically.
 
+Takes a directory tree like this:
+
+```
+build
+ |- external.html
+ |- logo.png
+ |- test.css
+ |- test.html
+ |- test.js
+```
+
+And converts that into the following, automatically:
+
+```
+build
+ |- external.7cd6384e1bb3885ede04bc7ef7d87c1b.html
+ |- logo.0f278ffd46a4687731ccad34403db8f9.png
+ |- test.2cf007ff23e7b3dc8df55e05949abb83.html
+ |- test.84b6cd3d11e54bb8da24e6730ab64c98.css
+ |- test.cc01729f517ff39cfb928546ee06f184.js
+```
+
+This whole process happens without any manual dependency information and all references to dependencies are automatically replaced with the new names.
+
+NOTE: grunt-smart-rev cannot handle cross-dependencies, yet.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
 
@@ -17,73 +43,56 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 grunt.loadNpmTasks('grunt-smart-rev');
 ```
 
-## The "smart_rev" task
+## The "smartrev" task
 
 ### Overview
-In your project's Gruntfile, add a section named `smart_rev` to the data object passed into `grunt.initConfig()`.
+In your project's Gruntfile, add a section named `smartrev` to the data object passed into `grunt.initConfig()`.
 
 ```js
 grunt.initConfig({
-  smart_rev: {
-    options: {
-      // Task-specific options go here.
-    },
-    your_target: {
-      // Target-specific file lists and/or options go here.
-    },
-  },
+    smartrev: {
+        options: {
+            cwd: 'build',
+            baseUrl: '//s3.amazon.com/mysite/mybucket',
+            noRename: ['index.html', 'bootstrap.js'],
+        },
+        dist: {
+            src: [
+                '*.css',
+                '*.html',
+                '*.js',
+            ],
+            // Save the generated dependency tree and file hash information (optional)
+            dest: 'stats.json',
+        },
 });
 ```
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
+#### options.cwd
 Type: `String`
 Default value: `'.'`
 
-A string value that is used to do something else with whatever else.
+The directory where smart-rev should work inside. Should be your build directory.
 
-### Usage Examples
+#### options.baseUrl
+Type: `String`
+Default value: `''`
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+The base url to prepend to the generated urls/paths. Most probably should be your CDN's base url.
 
-```js
-grunt.initConfig({
-  smart_rev: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+#### options.noRename
+Type: `String[]`
+Default value: `[]`
 
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  smart_rev: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
+List of file patterns that should **not be renamed**, such as your `index.html` file.
 
 ## Contributing
-In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
+In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using JSHint and [Grunt](http://gruntjs.com/).
 
 ## Release History
-_(Nothing yet)_
+
+Date       | Changes
+-----------|--------
+01-02-2014 | Initial Release
