@@ -24,9 +24,23 @@ build
  |- test.cc01729f517ff39cfb928546ee06f184.js
 ```
 
-This whole process happens without any manual dependency information and all references to dependencies are automatically replaced with the new names.
+References to URLs in code are automatically substituted for you.
 
-NOTE: grunt-smartrev cannot handle cross-dependencies, yet.
+In HTML files, it automatically locates and substitutes `href` and `src` attributes. In CSS files, the universal `url()` declaration is used and substituted. And in JavaScript files, a pseudo function named `geturl` is used:
+
+```js
+var cssURL = geturl('test.css');
+var logoURL = geturl('logo.png');
+```
+
+becomes:
+
+```js
+var cssURL = 'test.84b6cd3d11e54bb8da24e6730ab64c98.css';
+var logoURL = 'logo.0f278ffd46a4687731ccad34403db8f9.png';
+```
+
+*Note: grunt-smartrev cannot handle cross-dependencies where two file both reference each other in a circular fashion, yet.*
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
