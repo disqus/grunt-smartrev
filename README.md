@@ -1,4 +1,4 @@
-# grunt-smartrev
+# grunt-smartrev [![Build Status](https://travis-ci.org/disqus/grunt-smartrev.png?branch=master)](https://travis-ci.org/disqus/grunt-smartrev)
 
 > A "smart" file versioner for production environments which takes inter-file dependencies into account automatically.
 

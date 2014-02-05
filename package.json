@@ -25,7 +25,7 @@
         "node": ">= 0.8.0"
     },
     "scripts": {
-        "test": "grunt test"
+        "test": "node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js test"
     },
     "dependencies": {
         "css-parse": "1.7.0",
