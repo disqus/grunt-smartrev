@@ -3,7 +3,7 @@
  *
  *
  * Copyright (c) 2014 Disqus
- * Licensed under the MIT license.
+ * Licensed under the Apache 2.0 license.
  */
 
 'use strict';
