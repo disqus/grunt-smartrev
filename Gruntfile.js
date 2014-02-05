@@ -1,5 +1,5 @@
 /*
- * grunt-smart-rev
+ * grunt-smartrev
  * 
  *
  * Copyright (c) 2014 Disqus

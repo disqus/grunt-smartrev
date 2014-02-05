@@ -1,4 +1,4 @@
-# grunt-smart-rev
+# grunt-smartrev
 
 > A "smart" file versioner for production environments which takes inter-file dependencies into account automatically.
 
@@ -26,7 +26,7 @@ build
 
 This whole process happens without any manual dependency information and all references to dependencies are automatically replaced with the new names.
 
-NOTE: grunt-smart-rev cannot handle cross-dependencies, yet.
+NOTE: grunt-smartrev cannot handle cross-dependencies, yet.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
@@ -34,13 +34,13 @@ This plugin requires Grunt `~0.4.2`
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 
 ```shell
-npm install grunt-smart-rev --save-dev
+npm install grunt-smartrev --save-dev
 ```
 
 Once the plugin has been installed, it may be enabled inside your Gruntfile with this line of JavaScript:
 
 ```js
-grunt.loadNpmTasks('grunt-smart-rev');
+grunt.loadNpmTasks('grunt-smartrev');
 ```
 
 ## The "smartrev" task
@@ -74,7 +74,7 @@ grunt.initConfig({
 Type: `String`
 Default value: `'.'`
 
-The directory where smart-rev should work inside. Should be your build directory.
+The directory where smartrev should work inside. Should be your build directory.
 
 #### options.baseUrl
 Type: `String`

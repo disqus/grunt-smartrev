@@ -1,19 +1,19 @@
 {
-    "name": "grunt-smart-rev",
+    "name": "grunt-smartrev",
     "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
     "version": "0.1.0",
     "homepage": "",
     "author": {
         "name": "Disqus",
         "email": "open-source@disqus.com",
-        "url": "https://github.com/disqus/grunt-smart-rev"
+        "url": "https://github.com/disqus/grunt-smartrev"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/disqus/grunt-smart-rev.git"
+        "url": "git://github.com/disqus/grunt-smartrev.git"
     },
     "bugs": {
-        "url": "https://github.com/disqus/grunt-smart-rev/issues"
+        "url": "https://github.com/disqus/grunt-smartrev/issues"
     },
     "licenses": [
         {

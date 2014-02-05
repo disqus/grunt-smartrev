@@ -1,6 +1,6 @@
 {
   "base": "git:merge-base(origin/master), arc:upstream, git:HEAD^",
-  "project_id": "grunt-smart-rev",
+  "project_id": "grunt-smartrev",
   "conduit_uri" : "http://phabricator.local.disqus.net/",
   "copyright_holder": "Disqus, Inc.",
   "history.immutable": false,
