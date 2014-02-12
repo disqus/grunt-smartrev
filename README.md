@@ -79,6 +79,7 @@ grunt.initConfig({
             // Save the generated dependency tree and file hash information (optional)
             dest: 'stats.json',
         },
+    }
 });
 ```
 
