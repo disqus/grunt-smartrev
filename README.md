@@ -13,7 +13,7 @@ build
  |- test.js
 ```
 
-And converts that into the following, automatically:
+Converts it into the following:
 
 ```
 build
@@ -24,23 +24,58 @@ build
  |- test.cc01729f517ff39cfb928546ee06f184.js
 ```
 
-References to URLs in code are automatically substituted for you.
+Then modifies your application's source code to point to the new, versioned files.
 
-In HTML files, it automatically locates and substitutes `href` and `src` attributes. In CSS files, the universal `url()` declaration is used and substituted. And in JavaScript files, a pseudo function named `geturl` is used:
+## File references in source code
 
-```js
-var cssURL = geturl('test.css');
-var logoURL = geturl('logo.png');
+smartrev substitutes file references in HTML, JavaScript, and CSS.
+
+### HTML
+
+In HTML files, smartrev substitutes `href` and `src` attributes.
+
+
+```html
+<!-- Before -->
+<link href="build/test.css" rel="stylesheet" type="text/css"/>
+<script src="build/test.js"></script>
+
+<!-- After -->
+<link href="build/test.css" type="text/css" rel="stylesheet"/>
+<script src="build/test.cc01729f517ff39cfb928546ee06f184.js"></script>
 ```
 
-becomes:
+### JavaScript
+
+In JavaScript files, smartrev substitutes any path strings called by a pseudo-global `geturl` function.
+
+This function doesn't actually exist; it is just used to tag strings for substitution, and is removed by the plugin afterwards.
 
 ```js
-var cssURL = 'test.84b6cd3d11e54bb8da24e6730ab64c98.css';
-var logoURL = 'logo.0f278ffd46a4687731ccad34403db8f9.png';
+// Before
+var cssURL = geturl('build/test.css');
+var logoURL = geturl('build/logo.png');
+
+// After
+var cssURL = 'build/test.84b6cd3d11e54bb8da24e6730ab64c98.css';
+var logoURL = 'build/logo.0f278ffd46a4687731ccad34403db8f9.png';
 ```
 
-*Note: grunt-smartrev cannot handle cross-dependencies where two file both reference each other in a circular fashion, yet.*
+### CSS
+
+In CSS files, smartrev substitutes any path strings found inside the `url()` declaration.
+
+```css
+/* Before */
+.logo {
+    background: url(build/logo.png) no-repeat;
+}
+
+/* After */
+.logo {
+    background: url(build/logo.0f278ffd46a4687731ccad34403db8f9.png) no-repeat;
+}
+```
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
