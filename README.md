@@ -77,6 +77,38 @@ In CSS files, smartrev substitutes any path strings found inside the `url()` dec
 }
 ```
 
+## Inter-file dependencies
+
+smartrev considers inter-file dependencies when generating revisions for each file.
+
+Consider this example of a CSS file and two PNG files that were previously modified/renamed by smartrev:
+
+```css
+/* styles.334e21d7c11d250e9ccc0c17eb8ba499.css */
+.a {
+    background: url(a.f51946af45e0b561c60f768335c9eb79.png);
+}
+.b {
+    background: url(b.b47581f5ba4a76da649c1fe5a6b68775.png);
+}
+```
+
+Let's say you modify `a.png`. As a result, it has a new revision, and running the smartrev task again yields the following:
+
+```css
+/* styles.fef7511f24fecec4c030b035c7019143.css (NEW) */
+.a {
+    background: url(a.5a88b4a157baf9f23f9f4e3e68b4e394.png); /* NEW */
+}
+.b {
+    background: url(b.b47581f5ba4a76da649c1fe5a6b68775.png); /* unchanged */
+}
+```
+
+Notice that not only did `a.png` get a new revision, so did the file that referenced it: `styles.css`. This has to happen, because if `styles.css` doesn't get a new revision, users will download the old `styles.css` that still points to the old version of `a.png`.
+
+To do this, smartrev generates a full dependency tree of your source files based on the URL substitution patterns documented above.
+
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
 
