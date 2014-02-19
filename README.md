@@ -6,22 +6,22 @@ Takes a directory tree like this:
 
 ```
 build
- |- external.html
+ |- index.html
+ |- app.js
+ |- deferred.js
+ |- styles.css
  |- logo.png
- |- test.css
- |- test.html
- |- test.js
-```
+ ```
 
 Converts it into the following:
 
 ```
 build
- |- external.7cd6384e1bb3885ede04bc7ef7d87c1b.html
- |- logo.0f278ffd46a4687731ccad34403db8f9.png
- |- test.2cf007ff23e7b3dc8df55e05949abb83.html
- |- test.84b6cd3d11e54bb8da24e6730ab64c98.css
- |- test.cc01729f517ff39cfb928546ee06f184.js
+ |- index.html
+ |- app.0f278ffd46a4687731ccad34403db8f9.js
+ |- deferred.2cf007ff23e7b3dc8df55e05949abb83.js
+ |- styles.84b6cd3d11e54bb8da24e6730ab64c98.css
+ |- logo.cc01729f517ff39cfb928546ee06f184.png
 ```
 
 Then modifies your application's source code to point to the new, versioned files.
@@ -37,12 +37,12 @@ In HTML files, smartrev substitutes `href` and `src` attributes.
 
 ```html
 <!-- Before -->
-<link href="build/test.css" rel="stylesheet" type="text/css"/>
-<script src="build/test.js"></script>
+<link href="build/styles.css" rel="stylesheet" type="text/css"/>
+<script src="build/app.js"></script>
 
 <!-- After -->
-<link href="build/test.84b6cd3d11e54bb8da24e6730ab64c98.css" type="text/css" rel="stylesheet"/>
-<script src="build/test.cc01729f517ff39cfb928546ee06f184.js"></script>
+<link href="build/styles.84b6cd3d11e54bb8da24e6730ab64c98.css" type="text/css" rel="stylesheet"/>
+<script src="build/app.0f278ffd46a4687731ccad34403db8f9.js"></script>
 ```
 
 ### JavaScript
@@ -53,12 +53,14 @@ This function doesn't actually exist; it is just used to tag strings for substit
 
 ```js
 // Before
-var cssURL = geturl('build/test.css');
-var logoURL = geturl('build/logo.png');
+var script = document.createElement('script');
+script.src = geturl('build/deferred.js');
+document.head.appendChild(script);
 
 // After
-var cssURL = 'build/test.84b6cd3d11e54bb8da24e6730ab64c98.css';
-var logoURL = 'build/logo.0f278ffd46a4687731ccad34403db8f9.png';
+var script = document.createElement('script');
+script.src = 'build/deferred.2cf007ff23e7b3dc8df55e05949abb83.js';
+document.head.appendChild(script);
 ```
 
 ### CSS
@@ -73,7 +75,7 @@ In CSS files, smartrev substitutes any path strings found inside the `url()` dec
 
 /* After */
 .logo {
-    background: url(build/logo.0f278ffd46a4687731ccad34403db8f9.png) no-repeat;
+    background: url(build/logo.cc01729f517ff39cfb928546ee06f184.png) no-repeat;
 }
 ```
 
@@ -107,7 +109,7 @@ Let's say you modify `a.png`. As a result, it has a new revision, and running th
 
 Notice that not only did `a.png` get a new revision, so did the file that referenced it: `styles.css`. This has to happen, because if `styles.css` doesn't get a new revision, users will download the old `styles.css` that still points to the old version of `a.png`.
 
-To do this, smartrev generates a full dependency tree of your source files based on the URL substitution patterns documented above.
+To do this, smartrev generates a full dependency tree of your source files based on the URL substitution patterns documented above. If a fourth file referenced `styles.css`, it too would get a new revision, and so on.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
