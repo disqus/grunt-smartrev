@@ -41,7 +41,7 @@ In HTML files, smartrev substitutes `href` and `src` attributes.
 <script src="build/test.js"></script>
 
 <!-- After -->
-<link href="build/test.css" type="text/css" rel="stylesheet"/>
+<link href="build/test.84b6cd3d11e54bb8da24e6730ab64c98.css" type="text/css" rel="stylesheet"/>
 <script src="build/test.cc01729f517ff39cfb928546ee06f184.js"></script>
 ```
 
