@@ -12,6 +12,7 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function (grunt) {
+    var xunitPath = grunt.option('xunit-file');
 
     // Project configuration.
     var config = {
@@ -47,6 +48,13 @@ module.exports = function (grunt) {
         // Unit tests.
         nodeunit: {
             'console': ['test/*_test.js'],
+            'xunit': {
+                src: 'test/*_test.js',
+                options: {
+                    reporter: 'junit',
+                    reporterOptions: { output: xunitPath },
+                },
+            },
         },
     };
 
@@ -80,37 +88,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
-    // The super-ugly hack below requires a few changes to go away:
-    //  1. Make grunt-contrib-nodeunit to be compatible with junit reporter
-    //  2. Make GenericXunitTestRunner in arcanist to accept a folder of XML files
-    //     instead of a single, enforced XML file path.
-    grunt.registerTask('nodeunit-xunit', 'Very ugly hack to get XUnit results from nodeunit', function () {
-        var done = this.async();
-
-        grunt.task.requires('run');
-
-        grunt.util.spawn({
-            cmd: 'node',
-            args: [
-                './node_modules/grunt-contrib-nodeunit/node_modules/nodeunit/bin/nodeunit',
-                'test/smartrev_test.js',
-                '--reporter', 'junit',
-                '--output', path.dirname(grunt.option('xunit-file'))
-            ]
-        },
-        function (error, result, code) {
-            grunt.log.writeln(result);
-
-            fs.renameSync(path.join(path.dirname(grunt.option('xunit-file')), 'smartrev_test.js.xml'), grunt.option('xunit-file'));
-            return done(code === 0);
-        });
-    });
-
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
     grunt.registerTask('run', ['clean', 'copy', 'smartrev']);
     grunt.registerTask('test', ['run', 'nodeunit:console']);
-    grunt.registerTask('test.xunit', ['run', 'nodeunit-xunit']);
+    grunt.registerTask('test.xunit', ['run', 'nodeunit:xunit']);
 
     // By default, run all tests.
     grunt.registerTask('default', ['test']);
