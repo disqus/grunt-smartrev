@@ -12,7 +12,9 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function (grunt) {
-    var xunitPath = grunt.option('xunit-file');
+    var xunitPath = grunt.option('xunit-path');
+    // Ensure directory
+    grunt.file.mkdir(xunitPath);
 
     // Project configuration.
     var config = {
@@ -47,11 +49,10 @@ module.exports = function (grunt) {
 
         // Unit tests.
         nodeunit: {
-            'console': ['test/*_test.js'],
-            'xunit': {
+            all: {
                 src: 'test/*_test.js',
                 options: {
-                    reporter: 'junit',
+                    reporter: xunitPath ? 'junit' : 'grunt',
                     reporterOptions: { output: xunitPath },
                 },
             },
@@ -91,8 +92,7 @@ module.exports = function (grunt) {
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
     grunt.registerTask('run', ['clean', 'copy', 'smartrev']);
-    grunt.registerTask('test', ['run', 'nodeunit:console']);
-    grunt.registerTask('test.xunit', ['run', 'nodeunit:xunit']);
+    grunt.registerTask('test', ['run', 'nodeunit']);
 
     // By default, run all tests.
     grunt.registerTask('default', ['test']);
