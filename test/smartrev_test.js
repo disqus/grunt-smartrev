@@ -7,20 +7,26 @@ var compareResults = function (name, test) {
     var actualPath = path.join('tmp', name);
     var expectedPath = path.join('test', 'expected', name);
 
-    fs.readdir(actualPath, function (err, files) {
-        if (err || !files.length)
-            throw new Error('No files found to compare!');
+    var files = fs.readdirSync(actualPath);
 
-        test.expect(files.length * 2);
-        files.forEach(function (item) {
-            var expectedFilePath = path.join(expectedPath, item);
-            test.ok(fs.existsSync(expectedFilePath), 'File name is correct');
+    if (!files.length)
+        throw new Error('No files found to compare!');
 
-            var actual = fs.readFileSync(path.join(actualPath, item));
-            var expected = fs.readFileSync(expectedFilePath);
-            test.deepEqual(actual, expected, 'Files match');
-        });
-        test.done();
+    files.forEach(function (item) {
+        var actualFilePath = path.join(actualPath, item);
+        var expectedFilePath = path.join(expectedPath, item);
+
+        if (fs.statSync(actualFilePath).isDirectory()) {
+            return compareResults(path.join(name, item), test);
+        }
+
+        test.ok(fs.existsSync(expectedFilePath), 'File name is correct');
+
+        var actual = fs.readFileSync(actualFilePath);
+        var expected = fs.readFileSync(expectedFilePath);
+
+        // console.log(actualFilePath, expectedFilePath);
+        test.deepEqual(actual.toString(), expected.toString(), actualFilePath + ' matches ' + expectedFilePath);
     });
 };
 
@@ -29,8 +35,10 @@ exports.smartrev = (function () {
         if (!fs.statSync(path.join('tmp', item)).isDirectory())
             return;
 
-        tests[item] = compareResults.bind(global, item);
-
+        tests[item] = function (test) {
+            compareResults(item, test);
+            test.done();
+        }
         return tests;
     }, {});
 }());
