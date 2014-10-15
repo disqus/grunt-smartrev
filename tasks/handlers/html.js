@@ -31,13 +31,11 @@ var parseElem = function (elem) {
 
 var processElem = function (elem) {
     var node = this;
-    var tree = this.tree;
     var baseUrl = this.tree.baseUrl ? this.tree.baseUrl + '/' : '';
 
     var attrName = elem.__attrName;
     elem.attribs[attrName] = elem.attribs[attrName].replace(URL_REGEX, function (match, url, query) {
-        url = node.resolve(url);
-        return baseUrl + tree.get(url).name + query;
+        return baseUrl + node.resolveAsHashedUrl(url) + query;
     });
 };
 

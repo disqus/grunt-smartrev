@@ -53,12 +53,11 @@ var processDeclaration = function (declaration) {
     var val = declaration.value.replace(COMMENT_REGEX, '');
 
     var node = this;
-    var tree = this.tree;
     var baseUrl = this.tree.baseUrl ? this.tree.baseUrl + '/' : '';
     URL_REGEX.lastIndex = 0;  // reset the RegExp
     declaration.value = val.replace(URL_REGEX, function (match, quote, url, query) {
-        url = node.resolve(url);
-        return 'url(' + quote + baseUrl + tree.get(url).name + query + quote + ')';
+        url = node.resolveAsHashedUrl(url);
+        return 'url(' + quote + baseUrl + url + query + quote + ')';
     });
 };
 

@@ -129,6 +129,13 @@ Dependency.prototype.resolve = function (url) {
     return path.relative(process.cwd(), path.resolve(path.dirname(this.name), url));
 };
 
+// Returns hashed url relative to file (this.name)
+Dependency.prototype.resolveAsHashedUrl = function (url) {
+    var resolvedUrl = this.resolve(url);
+    var hashedUrl = this.tree.get(resolvedUrl).name;
+    return path.relative(path.dirname(this.name), hashedUrl);
+};
+
 Dependency.prototype.dependOn = function (node) {
     this.dependencies[node.name] = node;
 };

@@ -60,11 +60,9 @@ var isUrl = function (node) {
 };
 
 var processNode = function (node) {
-    var url = this.resolve(node.__url);
-
     // Replace "call expression" with a string literal (offline evaluation/macro)
     node.type = 'Literal';
-    node.value = this.tree.get(url).name;
+    node.value = this.resolveAsHashedUrl(node.__url);
 
     if (this.tree.baseUrl)
         node.value = this.tree.baseUrl + '/' + node.value;
@@ -80,12 +78,15 @@ var extract = function () {
         if (!url)
             return;
 
-        url = file.resolve(extractStr(url));
+        // Store original, unresolved url ...
+        url = extractStr(url);
+        node.__url = url;
+
+        url = file.resolve(url);
 
         if (!fs.existsSync(url))
             return;
 
-        node.__url = url;
         file.dependOn(file.tree.get(url));
         file.marks.push(node);
     }});
