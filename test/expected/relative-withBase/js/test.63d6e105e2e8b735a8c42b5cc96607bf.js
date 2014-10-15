@@ -1,0 +1,2 @@
+var letsuse = '//mycdn.com/files/styles/test.3737bcbcc44c7f9ef9c7165a6bb6e45c.css', and = '//mycdn.com/files/images/logo.0f278ffd46a4687731ccad34403db8f9.png';
+myglobal.helpersandstuff.geturl.call(window, 'ex' + 'tern' + 'al.' + 'html', 'random', 'strings');

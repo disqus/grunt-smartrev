@@ -28,8 +28,7 @@
         "test": "node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js test"
     },
     "dependencies": {
-        "css-parse": "1.7.0",
-        "css-stringify": "1.4.1",
+        "css": "2.1.0",
         "htmlparser2": "3.4.0",
         "acorn": "0.4.2",
         "escodegen": "1.1.0",

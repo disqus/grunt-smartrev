@@ -63,9 +63,6 @@ var processNode = function (node) {
     // Replace "call expression" with a string literal (offline evaluation/macro)
     node.type = 'Literal';
     node.value = this.resolveAsHashedUrl(node.__url);
-
-    if (this.tree.baseUrl)
-        node.value = this.tree.baseUrl + '/' + node.value;
 };
 
 var extract = function () {
