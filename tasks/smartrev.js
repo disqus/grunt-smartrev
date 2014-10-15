@@ -133,7 +133,13 @@ Dependency.prototype.resolve = function (url) {
 Dependency.prototype.resolveAsHashedUrl = function (url) {
     var resolvedUrl = this.resolve(url);
     var hashedUrl = this.tree.get(resolvedUrl).name;
-    return path.relative(path.dirname(this.name), hashedUrl);
+
+    return path.normalize(
+        path.relative(
+            path.dirname(this.name),
+            hashedUrl
+        )
+    ).split(path.sep).join('/');  // Because these are URLs
 };
 
 Dependency.prototype.dependOn = function (node) {
