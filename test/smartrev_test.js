@@ -38,7 +38,8 @@ exports.smartrev = (function () {
         tests[item] = function (test) {
             compareResults(item, test);
             test.done();
-        }
+        };
+
         return tests;
     }, {});
 }());

@@ -136,12 +136,12 @@ Dependency.prototype.resolveAsHashedUrl = function (url) {
     var baseUrl = this.tree.baseUrl;
     var basePath = baseUrl ? process.cwd() : path.dirname(this.name);
 
-    var resolvedUrl = path.normalize(path.relative(basePath, hashedUrl));
+    var finalUrl = path.normalize(path.relative(basePath, hashedUrl));
 
     if (baseUrl)
-        resolvedUrl = baseUrl + '/' + resolvedUrl;
+        finalUrl = baseUrl + '/' + resolvedUrl;
 
-    return resolvedUrl.split(path.sep).join('/');  // Because these are URLs (and Windows)
+    return finalUrl.split(path.sep).join('/');  // Because these are URLs (and Windows)
 };
 
 Dependency.prototype.dependOn = function (node) {
