@@ -18,10 +18,10 @@ module.exports = function (grunt) {
             all: [
                 'Gruntfile.js',
                 'tasks/*.js',
-                '<%= nodeunit.tests %>',
+                '<%= nodeunit.all.src %>',
             ],
             options: {
-                jshintrc: '.jshintrc',
+                jshintrc: true,
             },
         },
 
@@ -83,11 +83,12 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
     grunt.registerTask('run', ['clean', 'copy', 'smartrev']);
-    grunt.registerTask('test', ['run', 'nodeunit']);
+    grunt.registerTask('test', ['jshint', 'run', 'nodeunit']);
 
     // By default, run all tests.
     grunt.registerTask('default', ['test']);
