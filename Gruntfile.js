@@ -12,10 +12,6 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function (grunt) {
-    var xunitPath = grunt.option('xunit-path');
-    // Ensure directory
-    grunt.file.mkdir(xunitPath);
-
     // Project configuration.
     var config = {
         jshint: {
@@ -52,8 +48,7 @@ module.exports = function (grunt) {
             all: {
                 src: 'test/*_test.js',
                 options: {
-                    reporter: xunitPath ? 'junit' : 'grunt',
-                    reporterOptions: { output: xunitPath },
+                    reporter: 'grunt',
                 },
             },
         },
