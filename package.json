@@ -28,11 +28,11 @@
         "test": "node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js test"
     },
     "dependencies": {
-        "css": "2.1.0",
-        "htmlparser2": "3.4.0",
-        "acorn": "0.4.2",
-        "escodegen": "1.1.0",
-        "lodash": "2.4.1"
+        "css": "^2.1.0",
+        "htmlparser2": "^3.4.0",
+        "acorn": "^0.9.0",
+        "escodegen": "^1.1.0",
+        "lodash": "^2.4.1"
     },
     "devDependencies": {
         "grunt-contrib-clean": "^0.4.0",
