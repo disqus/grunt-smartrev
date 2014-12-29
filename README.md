@@ -179,5 +179,6 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Date       | Changes
 -----------|--------
+29-12-2014 | Add support for srcset
 25-02-2014 | Simplified README
 01-02-2014 | Initial Release
