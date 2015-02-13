@@ -1,7 +1,7 @@
 {
     "name": "grunt-smartrev",
     "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "homepage": "",
     "author": {
         "name": "Disqus",
@@ -30,9 +30,9 @@
     "dependencies": {
         "css": "^2.1.0",
         "htmlparser2": "^3.4.0",
-        "acorn": "^0.9.0",
-        "escodegen": "^1.1.0",
-        "lodash": "^2.4.1"
+        "acorn": "^0.11.0",
+        "escodegen": "^1.6.1",
+        "lodash": "^3.2.0"
     },
     "devDependencies": {
         "grunt-contrib-clean": "^0.4.0",
