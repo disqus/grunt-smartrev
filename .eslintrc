@@ -22,6 +22,8 @@ rules:
           # require and exports are ignored for the Simplified CommonJS wrapper, in which
           # a module is wrapped with `define(function (require, exports, module) {...});`
           argsIgnorePattern: "^_.+|^require$|^exports$"
+    no-var: 2
+    prefer-const: 2
     no-eq-null: 2
     no-bitwise: 2
     no-use-before-define: 1

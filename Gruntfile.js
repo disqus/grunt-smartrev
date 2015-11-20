@@ -13,7 +13,7 @@ const path = require('path');
 
 module.exports = function (grunt) {
     // Project configuration.
-    var config = {
+    const config = {
         // Before generating any new files, remove any previously-created files.
         clean: {
             tests: ['tmp'],
@@ -47,8 +47,8 @@ module.exports = function (grunt) {
         if (!fs.statSync(path.join('test/fixtures', item)).isDirectory())
             return;
 
-        var optionsPath = path.join('test', 'fixtures', item, 'options.json');
-        var options = grunt.file.exists(optionsPath) ?
+        const optionsPath = path.join('test', 'fixtures', item, 'options.json');
+        const options = grunt.file.exists(optionsPath) ?
                       grunt.file.readJSON(optionsPath) : {};
 
         if (!options.cwd)

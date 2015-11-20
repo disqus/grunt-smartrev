@@ -4,7 +4,7 @@ const _ = require('lodash');
 const smartrev = require('../lib/smartrev');
 
 module.exports = function (grunt) {
-    var filterFiles = function (filepath) {
+    const filterFiles = function (filepath) {
         if (grunt.file.exists(filepath))
             return true;
 
@@ -15,8 +15,8 @@ module.exports = function (grunt) {
     grunt.registerMultiTask(
         'smartrev', 'Walks all files, creates a dependency tree and renames all of them using hashes of their contents',
         function () {
-            var owd = process.cwd();
-            var options = this.options({
+            const owd = process.cwd();
+            const options = this.options({
                 cwd: '.',
                 baseUrl: '',
                 noRename: [],
@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 
             // Iterate over all specified file groups.
             this.files.forEach(function (fileSet) {
-                var tree = new smartrev.Tree(
+                const tree = new smartrev.Tree(
                     _.result(options, 'baseUrl'),
                     grunt.file.expand({}, options.noRename),
                     options.algorithm
