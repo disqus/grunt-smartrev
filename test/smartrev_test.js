@@ -16,9 +16,8 @@ var compareResults = function (name, test) {
         var actualFilePath = path.join(actualPath, item);
         var expectedFilePath = path.join(expectedPath, item);
 
-        if (fs.statSync(actualFilePath).isDirectory()) {
+        if (fs.statSync(actualFilePath).isDirectory())
             return compareResults(path.join(name, item), test);
-        }
 
         test.ok(fs.existsSync(expectedFilePath), 'File name is correct');
 

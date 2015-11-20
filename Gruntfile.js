@@ -1,6 +1,6 @@
 /*
  * grunt-smartrev
- * 
+ *
  *
  * Copyright (c) 2014 Disqus
  * Licensed under the Apache 2.0 license.
@@ -8,23 +8,12 @@
 
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
+const fs = require('fs');
+const path = require('path');
 
 module.exports = function (grunt) {
     // Project configuration.
     var config = {
-        jshint: {
-            all: [
-                'Gruntfile.js',
-                'tasks/*.js',
-                '<%= nodeunit.all.src %>',
-            ],
-            options: {
-                jshintrc: true,
-            },
-        },
-
         // Before generating any new files, remove any previously-created files.
         clean: {
             tests: ['tmp'],
@@ -83,12 +72,11 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     // Whenever the "test" task is run, first clean the "tmp" dir, then run this
     // plugin's task(s), then test the result.
     grunt.registerTask('run', ['clean', 'copy', 'smartrev']);
-    grunt.registerTask('test', ['jshint', 'run', 'nodeunit']);
+    grunt.registerTask('test', ['run', 'nodeunit']);
 
     // By default, run all tests.
     grunt.registerTask('default', ['test']);
