@@ -42,9 +42,14 @@
         "grunt": "^0.4.2"
     },
     "peerDependencies": {
-        "grunt": "~0.4.2"
+        "grunt": ">=0.4.0"
     },
     "keywords": [
-        "gruntplugin", "asset", "assetgraph", "hash", "rev", "version"
+        "gruntplugin",
+        "asset",
+        "assetgraph",
+        "hash",
+        "rev",
+        "version"
     ]
 }
