@@ -5,7 +5,6 @@
  * Copyright (c) 2016 Disqus
  * Licensed under the Apache 2.0 license.
  */
-
 'use strict';
 
 const fs = require('fs');
