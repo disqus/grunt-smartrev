@@ -1,55 +1,55 @@
 {
-    "name": "grunt-smartrev",
-    "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
-    "version": "0.3.0",
-    "homepage": "",
-    "author": {
-        "name": "Disqus",
-        "email": "open-source@disqus.com",
-        "url": "https://github.com/disqus/grunt-smartrev"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/disqus/grunt-smartrev.git"
-    },
-    "bugs": {
-        "url": "https://github.com/disqus/grunt-smartrev/issues"
-    },
-    "licenses": [
-        {
-            "type": "Apache-2.0",
-            "url": "/blob/master/LICENSE"
-        }
-    ],
-    "engines": {
-        "node": ">= 4.2.2"
-    },
-    "scripts": {
-        "test": "eslint . && node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js test"
-    },
-    "dependencies": {
-        "css": "^2.2.1",
-        "htmlparser2": "^3.8.3",
-        "acorn": "^2.6.4",
-        "escodegen": "^1.7.0",
-        "lodash": "^3.10.1"
-    },
-    "devDependencies": {
-        "grunt-contrib-clean": "^0.4.0",
-        "grunt-contrib-copy": "^0.4.1",
-        "grunt-contrib-nodeunit": "^0.3.3",
-        "eslint": "^1.9.0",
-        "grunt": "^0.4.2"
-    },
-    "peerDependencies": {
-        "grunt": ">=0.4.0"
-    },
-    "keywords": [
-        "gruntplugin",
-        "asset",
-        "assetgraph",
-        "hash",
-        "rev",
-        "version"
-    ]
+  "name": "grunt-smartrev",
+  "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
+  "version": "0.3.0",
+  "homepage": "",
+  "author": {
+    "name": "Disqus",
+    "email": "open-source@disqus.com",
+    "url": "https://github.com/disqus/grunt-smartrev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/disqus/grunt-smartrev.git"
+  },
+  "bugs": {
+    "url": "https://github.com/disqus/grunt-smartrev/issues"
+  },
+  "licenses": [
+    {
+      "type": "Apache-2.0",
+      "url": "/blob/master/LICENSE"
+    }
+  ],
+  "engines": {
+    "node": ">= 4.2.2"
+  },
+  "scripts": {
+    "test": "eslint . && node -e \"require('grunt').cli()\" ./node_modules/grunt/lib/grunt.js test"
+  },
+  "dependencies": {
+    "acorn": "^2.7.0",
+    "css": "^2.2.1",
+    "escodegen": "^1.8.0",
+    "htmlparser2": "^3.9.0",
+    "lodash": "^4.11.1"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0"
+  },
+  "peerDependencies": {
+    "grunt": ">=0.4.0"
+  },
+  "keywords": [
+    "gruntplugin",
+    "asset",
+    "assetgraph",
+    "hash",
+    "rev",
+    "version"
+  ]
 }
