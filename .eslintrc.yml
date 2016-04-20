@@ -3,8 +3,6 @@ parserOptions:
 env:
     node: true
     es6: true
-plugins:
-    - markdown
 rules:
     strict: 2
     eqeqeq:
