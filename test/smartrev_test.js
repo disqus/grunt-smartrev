@@ -12,7 +12,7 @@ const compareResults = function (name, test) {
     if (!files.length)
         throw new Error('No files found to compare!');
 
-    files.forEach(function (item) {
+    files.forEach(item => {
         const actualFilePath = path.join(actualPath, item);
         const expectedFilePath = path.join(expectedPath, item);
 
@@ -25,14 +25,14 @@ const compareResults = function (name, test) {
         const expected = fs.readFileSync(expectedFilePath);
 
         // console.log(actualFilePath, expectedFilePath);
-        test.deepEqual(actual.toString(), expected.toString(), actualFilePath + ' matches ' + expectedFilePath);
+        test.deepEqual(actual.toString(), expected.toString(), `${actualFilePath} matches ${expectedFilePath}`);
     });
 };
 
 exports.smartrev = (function () {
-    return fs.readdirSync('tmp').reduce(function (tests, item) {
+    return fs.readdirSync('tmp').reduce((tests, item) => {
         if (!fs.statSync(path.join('tmp', item)).isDirectory())
-            return;
+            return undefined;
 
         tests[item] = function (test) {
             compareResults(item, test);

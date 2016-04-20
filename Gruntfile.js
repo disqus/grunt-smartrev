@@ -43,19 +43,19 @@ module.exports = function (grunt) {
         },
     };
 
-    config.smartrev = fs.readdirSync('test/fixtures').reduce(function (targets, item) {
+    config.smartrev = fs.readdirSync('test/fixtures').reduce((targets, item) => {
         if (!fs.statSync(path.join('test/fixtures', item)).isDirectory())
-            return;
+            return undefined;
 
         const optionsPath = path.join('test', 'fixtures', item, 'options.json');
         const options = grunt.file.exists(optionsPath) ?
                       grunt.file.readJSON(optionsPath) : {};
 
         if (!options.cwd)
-            options.cwd = 'tmp/' + item;
+            options.cwd = `tmp/${item}`;
 
         targets[item] = {
-            options: options,
+            options,
             src: ['**/*.*', '!**/options.json'],
             dest: 'stats.json',
         };
