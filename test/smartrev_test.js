@@ -24,7 +24,6 @@ const compareResults = function (name, test) {
         const actual = fs.readFileSync(actualFilePath);
         const expected = fs.readFileSync(expectedFilePath);
 
-        // console.log(actualFilePath, expectedFilePath);
         test.deepEqual(actual.toString(), expected.toString(), `${actualFilePath} matches ${expectedFilePath}`);
     });
 };
