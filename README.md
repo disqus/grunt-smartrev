@@ -112,7 +112,7 @@ Notice that not only did `a.png` get a new revision, so did the file that refere
 To do this, smartrev generates a full dependency tree of your source files based on the URL substitution patterns documented above. If a fourth file referenced `styles.css`, it too would get a new revision, and so on.
 
 ## Getting Started
-This plugin requires Grunt `~0.4.2`
+This plugin requires Grunt `>=0.4.2`
 
 If you haven't used [Grunt](http://gruntjs.com/) before, be sure to check out the [Getting Started](http://gruntjs.com/getting-started) guide, as it explains how to create a [Gruntfile](http://gruntjs.com/sample-gruntfile) as well as install and use Grunt plugins. Once you're familiar with that process, you may install this plugin with this command:
 

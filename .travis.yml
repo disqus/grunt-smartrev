@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - "4"
-  - "6"
-  - "7"
+- '4'
+- '6'
+- '7'
+deploy:
+  provider: npm
+  email: opensource@disqus.com
+  on:
+    tags: true
+  api_key:
+    secure: jIdt2193DeNJ4SrNHRaPrWWWOEWkGZdhfVbK+gmPV38Rzm+cYeJd3Om7l83oEFoTIcJyQcKpfCtdOfEkizr08O+svYAR2nx+/6dKKrTkgs5/jWdOkbGfX4kxM1iC2gqUgH83VBluaEqhBxu7uHzTDe8fFu4HymRuybkamVY5/m8=

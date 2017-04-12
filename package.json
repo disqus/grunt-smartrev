@@ -1,7 +1,7 @@
 {
   "name": "grunt-smartrev",
   "description": "A \"smart\" file versioner for production environments which takes inter-file dependencies into account automatically.",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "homepage": "",
   "author": {
     "name": "Disqus",
@@ -43,7 +43,7 @@
     "grunt-contrib-nodeunit": "^1.0.0"
   },
   "peerDependencies": {
-    "grunt": ">=0.4.0"
+    "grunt": ">=0.4.2"
   },
   "keywords": [
     "gruntplugin",
