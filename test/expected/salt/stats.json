@@ -1,0 +1,1 @@
+{"logo.png":{"newName":"logo.e6e9f6e4a00132c4599351daa0524ffe.png","height":0,"size":1577,"dependencies":[]},"test.css":{"newName":"test.54d00a89358495d79b862b8d663575cf.css","height":1,"size":148,"dependencies":["logo.png"]},"test.html":{"newName":"test.b67e956b07a8542c25329007ddff69a7.html","height":1,"size":198,"dependencies":["logo.png"]}}

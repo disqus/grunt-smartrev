@@ -22,6 +22,7 @@ module.exports = function (grunt) {
                 baseUrl: '',
                 noRename: [],
                 algorithm: 'md5',
+                salt: '',
             });
 
             process.chdir(options.cwd);
@@ -31,7 +32,8 @@ module.exports = function (grunt) {
                 const tree = new smartrev.Tree(
                     _.result(options, 'baseUrl'),
                     grunt.file.expand({}, options.noRename),
-                    options.algorithm
+                    options.algorithm,
+                    options.salt
                 ).generate(fileSet.src.filter(filterFiles))
                  .process();
 
