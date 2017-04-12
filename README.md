@@ -172,6 +172,13 @@ Default value: `[]`
 
 List of file patterns that should **not be renamed**, such as your `index.html` file.
 
+#### options.salt
+Type: `String`
+Default value: `'''`
+
+A custom "salt" to use when generating the file hashes. This string is prepended to file
+contents when generating the hash so it can be used as a version to update all file hashes when necessary.
+
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using JSHint and [Grunt](http://gruntjs.com/).
 
@@ -179,6 +186,7 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 Date       | Changes
 -----------|--------
+12-04-2017 | Add `salt` option
 29-12-2014 | Add support for srcset
 25-02-2014 | Simplified README
 01-02-2014 | Initial Release
